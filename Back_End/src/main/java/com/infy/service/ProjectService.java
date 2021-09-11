@@ -4,6 +4,6 @@ import com.infy.model.Login;
 
 public interface ProjectService {
 
-	String validUser(Login login);
+	String validUser(Login login) throws Exception;
 	
 }

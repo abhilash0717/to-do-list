@@ -16,7 +16,7 @@ public class ServiceImpl implements ProjectService {
 	private Dao dao;
 	
 	@Override
-	public String validUser(Login login) {
+	public String validUser(Login login) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.validUser(login);
 	}

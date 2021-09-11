@@ -18,19 +18,26 @@ public class DaoImpl implements Dao{
 	private EntityManager entityManager;
 
 	@Override
-	public String validUser(Login login) {
+	public String validUser(Login login) throws Exception {
 		String s = "select l.name from LoginEntity l where l.name =: name";
 		Query query = entityManager.createQuery(s);
 		query.setParameter("name", login.getName());
-		List<LoginEntity> results = query.getResultList();
-		LoginEntity LE = results.get(0);
+		List<String> results = query.getResultList();
 		
-		if(LE != null) {
-			System.out.println("user is valid");
-			return LE.getName();
+		if(results.size() > 0) {
+			String n = results.get(0);	
+			
+			if(n.equals(login.getName())) {
+				System.out.println("user is valid");
+				return n;
+			}else {
+				System.out.println("User is not valid");
+				throw new Exception("cannot find user");
+			}
+			
+		}else {
+			System.out.println("User is not valid");
+			throw new Exception("cannot find user");
 		}
-		
-		System.out.println("User is not valid");
-		return null;
 	}
 }
