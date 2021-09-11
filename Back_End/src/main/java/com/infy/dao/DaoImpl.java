@@ -30,14 +30,12 @@ public class DaoImpl implements Dao{
 			if(n.equals(login.getName())) {
 				System.out.println("user is valid");
 				return n;
-			}else {
-				System.out.println("User is not valid");
-				throw new Exception("cannot find user");
-			}
 			
 		}else {
 			System.out.println("User is not valid");
-			throw new Exception("cannot find user");
+			return null;
+			}
 		}
+		return null;
 	}
 }
