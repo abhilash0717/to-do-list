@@ -33,9 +33,9 @@ public class DaoImpl implements Dao{
 			
 		}else {
 			System.out.println("User is not valid");
-			return null;
+			return "user is not valid";
 			}
 		}
-		return null;
+		return "user is not valid";
 	}
 }

@@ -1,11 +1,13 @@
 import {Component} from 'react';
 import axios from 'axios';
 
+const url = "http://localhost:4000/toDoList/login"
 export default class Login extends Component {
 
     state = {
         details : {name : "", password : ""}, formErrorMessages : {name : "", password : ""},
-        formValid : {name : false, password : false, buttonActive : false}
+        formValid : {name : false, password : false, buttonActive : false}, successMessage : "",
+        errorMessage : ""
     }
 
     back = (event) => {
@@ -57,8 +59,17 @@ export default class Login extends Component {
         this.finalSubmit();
     }
 
-    finalSubmit = () => {
-        
+    finalSubmit = (event) => {
+        axios.post(url, this.state.details)
+        .then((response) => {
+            this.setState({successMessage : response.data, errorMessage : ""})
+            localStorage.setItem("currentUserName", this.state.successMessage)
+            window.location = "/loggedin"
+        })
+        .catch((error) => {
+            if(error.response) this.setState({successMessage : "", errorMessage : error.response.data.message})
+            else this.setState({successMessage : "", errorMessage : "Please run the server"})
+        });
     }
     render(){
         const {details, formErrorMessages, formValid} = this.state
@@ -87,6 +98,8 @@ export default class Login extends Component {
                
                 <br></br>
             </form>
+            <span>{this.state.successMessage}</span>
+            <span>{this.state.errorMessage}</span>
             </>
         );
     }
