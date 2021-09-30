@@ -27,8 +27,12 @@ public class Api {
 	
 	@PostMapping(value = "/login")
 	public ResponseEntity<String> validUser(@RequestBody Login login) throws Exception{
+		try {
 			String s = projectService.validUser(login);
 			ResponseEntity<String> response = new ResponseEntity<String>(s,HttpStatus.CREATED);
 			return response;
+		}catch(Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
+		}
 	}
 }

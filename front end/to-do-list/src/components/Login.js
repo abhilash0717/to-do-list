@@ -62,11 +62,13 @@ export default class Login extends Component {
     finalSubmit = (event) => {
         axios.post(url, this.state.details)
         .then((response) => {
-            this.setState({successMessage : response.data, errorMessage : ""})
-            localStorage.setItem("currentUserName", this.state.successMessage)
-            window.location = "/loggedin"
+            
+                this.setState({successMessage : response.data, errorMessage : ""})
+                localStorage.setItem("currentUserName", this.state.successMessage)
+                window.location = "/loggedin"
         })
         .catch((error) => {
+            console.log("catch part");
             if(error.response) this.setState({successMessage : "", errorMessage : error.response.data.message})
             else this.setState({successMessage : "", errorMessage : "Please run the server"})
         });
