@@ -9,7 +9,9 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.infy.entity.LoginEntity;
+import com.infy.entity.ToDoEntity;
 import com.infy.model.Login;
+import com.infy.model.ToDo;
 
 @Repository
 public class DaoImpl implements Dao{
@@ -42,5 +44,15 @@ public class DaoImpl implements Dao{
 			}
 		}
 		throw new Exception("User.INVALID");
+	}
+
+	@Override
+	public String newToDo(ToDo todo) throws Exception {
+		ToDoEntity TE = new ToDoEntity();
+		TE.setMessage(todo.getMessage());
+		TE.setName(todo.getName());
+		
+		entityManager.persist(TE);
+		return "To-Do added successfully";
 	}
 }

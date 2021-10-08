@@ -9,6 +9,13 @@ create table login(
 );
 
 insert into login values (1000, "abhi", "abhi");
+insert into login values (1001, "chaitu", "chaitu");
+
+create table todo(
+	id int primary key auto_increment,
+	message varchar(30),
+	name varchar(30)
+);
 commit;
 select * from login;
 
