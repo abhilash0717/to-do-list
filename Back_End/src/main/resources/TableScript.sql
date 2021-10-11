@@ -14,8 +14,10 @@ insert into login values (1001, "chaitu", "chaitu");
 create table todo(
 	id int primary key auto_increment,
 	message varchar(30),
-	name varchar(30)
+	username varchar(30),
+	completed varchar(3)
 );
 commit;
 select * from login;
+select * from todo;
 

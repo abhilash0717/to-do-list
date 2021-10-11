@@ -47,12 +47,26 @@ public class DaoImpl implements Dao{
 	}
 
 	@Override
-	public String newToDo(ToDo todo) throws Exception {
+	public String newToDo(ToDo todo, String currentUserName) throws Exception {
 		ToDoEntity TE = new ToDoEntity();
 		TE.setMessage(todo.getMessage());
-		TE.setName(todo.getName());
-		
+		TE.setUsername(currentUserName);
+		TE.setCompleted("No");
 		entityManager.persist(TE);
 		return "To-Do added successfully";
+	}
+
+	@Override
+	public List<String> myTodos(String currentUserName) throws Exception {
+		String s = "select t.message from ToDoEntity t where t.username =: username and t.completed =: status";
+		Query q = entityManager.createQuery(s);
+		q.setParameter("username", currentUserName);
+		q.setParameter("status", "No");
+		List<String> list = q.getResultList();
+		
+		if(list.size() > 0) {
+			return list;
+		}
+		return null;
 	}
 }

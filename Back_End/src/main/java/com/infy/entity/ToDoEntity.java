@@ -13,7 +13,8 @@ public class ToDoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String message;
-	private String name;
+	private String username;
+	private String completed;
 	
 //	public int getId() {
 //		return id;
@@ -27,11 +28,18 @@ public class ToDoEntity {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
+	public String getCompleted() {
+		return completed;
+	}
+	public void setCompleted(String completed) {
+		this.completed = completed;
+	}
+	
 	
 }

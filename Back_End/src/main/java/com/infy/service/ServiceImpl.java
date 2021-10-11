@@ -1,5 +1,7 @@
 package com.infy.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,15 @@ public class ServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public String newToDo(ToDo todo) throws Exception {
+	public String newToDo(ToDo todo, String currentUserName) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.newToDo(todo);
+		return dao.newToDo(todo, currentUserName);
+	}
+
+	@Override
+	public List<String> myTodos(String currentUserName) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.myTodos(currentUserName);
 	}
 
 
